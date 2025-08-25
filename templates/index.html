@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pothole Detection AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-road"></i>
+                <h1>Pothole Detection AI</h1>
+            </div>
+            <p class="subtitle">Advanced AI-powered pothole detection using YOLOv8</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Image or Video</h3>
+                        <p>Drag and drop your file here or click to browse</p>
+                        <p class="file-types">Supported: JPG, PNG, MP4, AVI, MOV, MKV</p>
+                        <input type="file" id="fileInput" accept="image/*,video/*" style="display: none;">
+                        <button class="browse-btn" onclick="document.getElementById('fileInput').click()">
+                            Browse Files
+                        </button>
+                    </div>
+                </div>
+
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <div class="file-details">
+                        <i class="fas fa-file"></i>
+                        <span id="fileName"></span>
+                        <span id="fileSize"></span>
+                    </div>
+                    <button class="process-btn" id="processBtn">
+                        <i class="fas fa-play"></i>
+                        Process File
+                    </button>
+                </div>
+            </div>
+
+            <div class="processing-section" id="processingSection" style="display: none;">
+                <div class="processing-content">
+                    <div class="spinner"></div>
+                    <h3>Processing your file...</h3>
+                    <p>This may take a few minutes depending on file size</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Processing Complete!</h3>
+                    <p id="resultMessage"></p>
+                    
+                    <div class="preview-container" id="previewContainer">
+                        <!-- Preview will be shown here -->
+                    </div>
+                    
+                    <div class="download-section">
+                        <button class="download-btn" id="downloadBtn">
+                            <i class="fas fa-download"></i>
+                            Download Processed File
+                        </button>
+                        <button class="new-file-btn" onclick="resetApp()">
+                            <i class="fas fa-plus"></i>
+                            Process Another File
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-section" id="errorSection" style="display: none;">
+                <div class="error-content">
+                    <div class="error-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Error Occurred</h3>
+                    <p id="errorMessage"></p>
+                    <button class="retry-btn" onclick="resetApp()">
+                        <i class="fas fa-redo"></i>
+                        Try Again
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="model-info">
+                <h4>Model Information</h4>
+                <div class="model-details" id="modelDetails">
+                    <p>Loading model information...</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
